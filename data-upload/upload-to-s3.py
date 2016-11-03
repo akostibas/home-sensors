@@ -8,7 +8,7 @@ import tempfile
 
 from datetime import datetime
 
-DATAFILE = '/mnt/sda1/data/robo-sensor.csv'
+DATAFILE = '/mnt/sda1/data/robo-sensor.json'
 DATAFILE_NAME, DATAFILE_EXT = os.path.splitext(DATAFILE)
 DATAFILE_DIR = os.path.dirname(DATAFILE)
 BUCKET = 'alexi-littlechina'
