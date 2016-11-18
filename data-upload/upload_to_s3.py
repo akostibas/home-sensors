@@ -8,6 +8,8 @@ import tempfile
 
 from datetime import datetime
 
+import upload_to_cloudwatch
+
 DATAFILE = '/mnt/sda1/data/robo-sensor.json'
 DATAFILE_NAME, DATAFILE_EXT = os.path.splitext(DATAFILE)
 DATAFILE_DIR = os.path.dirname(DATAFILE)
@@ -65,10 +67,12 @@ def main():
     for file in find_files_to_upload():
         try:
             upload_file_to_s3(file)
+            # upload_to_cloudwatch.process_file(file)
             print "Cleaning up: " + file
             shutil.rmtree(os.path.dirname(file))
-        except:
+        except Exception as e:
             print "Unable to upload: " + file
+            print "  Exception: %s" % e
     
 if __name__ == "__main__":
     main()
